@@ -3,18 +3,18 @@ from docx.shared import Pt
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 
-# Create a new Document
+
 doc = Document()
 
-# Function to add a paragraph with a border (simulating a text box)
+
 def add_paragraph_with_border(text):
     para = doc.add_paragraph(text)
     
-    # Add borders
+
     tc = para._element
     tcPr = tc.get_or_add_tcPr()
     
-    # Create borders
+    
     borders = OxmlElement('w:tcBorders')
     for border_name in ['top', 'left', 'bottom', 'right']:
         border = OxmlElement(f'w:{border_name}')
@@ -24,10 +24,8 @@ def add_paragraph_with_border(text):
         border.set(qn('w:color'), '000000')
         borders.append(border)
     
-    # Attach borders to paragraph
     tcPr.append(borders)
 
-# Split the input into lines
 lines = """
 שהחמשושים מתחילים לרקוד בארבע בבוקר
 שעשיתי סמוך על סמוך על משחת שיניים
